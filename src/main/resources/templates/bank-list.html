@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиенты</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="components/navbar :: navbar"></header>
+
+<div class="container  pt-5">
+
+    <div th:switch="${banks}" >
+        <h2 th:case="null">Клиентов в банке пока нет, нажмите добавить</h2>
+        <div th:case="*">
+            <h1 class="text-center m-5">Клиенты с кредитами</h1>
+            <div class="row justify-content-start m-3">
+                <a href="/creditoffer-add" class="btn btn-info m-2" role="button" aria-pressed="true">Кредитное предложение</a>
+                <a class="btn btn-info m-2" href="/credit-offer">Графики платежей</a>
+            </div>
+
+            <table class="table " >
+                <thread >
+                    <tr>
+                        <th>клиент</th>
+                        <th>крдит</th>
+                    </tr>
+                </thread>
+                <tbody>
+                <tr th:each="bank : ${banks}" >
+
+                    <td th:text="${bank.client.firstName} + ' ' + ${bank.client.lastName} + ' '+${bank.client.patronymic}"></td>
+                    <td th:text="'Кредитный лимит: ' + ${bank.credit.limit}+ '; Процентная ставка по кредиту: ' + ${bank.credit.percent} + '%'"></td>
+
+
+
+
+                    <td><a th:href="@{bank-delete/{id}(id=${bank.id})}" class="btn btn-danger">Удалить</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+
+</body>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиенты</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="components/navbar :: navbar"></header>
+
+<div class="container  pt-5">
+    <div th:switch="${credits}" >
+        <h2 th:case="null">Клиентов в банке пока нет, нажмите добавить</h2>
+        <div th:case="*">
+            <h1 class="text-center m-5">Кредиты</h1>
+            <table class="table" >
+                <thread >
+                    <tr>
+                        <th>лимит по кредиту</th>
+                        <th>процентная ставка</th>
+                    </tr>
+                </thread>
+                <tbody>
+                <tr th:each="credit : ${credits}">
+
+                    <td th:text="${credit.limit}"></td>
+                    <td th:text="${credit.percent}"></td>
+
+                    <td><a th:href="@{credit-update/{id}(id=${credit.id})}" class="btn btn-primary">изменить</a> </td>
+                    <td><a th:href="@{credit-delete/{id}(id=${credit.id})}" class="btn btn-danger">Удалить</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a href="/credit-add" class="btn btn-primary" role="button" aria-pressed="true">Добавить кредит</a>
+</div>
+
+
+</body>

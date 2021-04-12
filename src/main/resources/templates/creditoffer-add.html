@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиенты</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="components/navbar :: navbar"></header>
+
+<div class="container">
+
+    <form action="#" th:action="@{/creditoffer-add}" th:object="${creditOffer}" method="post" class="alert mt-5">
+        <h1 class="text-center m-5">Кредитное предложение</h1>
+
+
+        <label >Выберите клиента</label>
+        <select th:field="*{client}" class="form-control" >
+            <option value="0"></option>
+            <option th:each="client : ${clients}" th:value="${client.id}"
+                    th:text="${client.lastName} + ' ' + ${client.firstName} + ' ' + ${client.patronymic} +
+                     ' паспорт: ' + ${client.numberPassport}"/>
+        </select>
+
+        <label>Сумма кредита</label>
+        <input type="number" class="form-control" th:field="*{amountOfCredit}" id="percent" placeholder="1 000 000" required>
+
+        <label>Срок (месяцев)</label>
+        <select class="form-control" th:field="*{mount}">
+            <option th:each="mount : ${mounts}" th:value="${mount}" th:text="${mount}"/>
+        </select>
+
+        <input type="submit" class="btn btn-primary mt-5 " value="Добавить">
+
+    </form>
+
+
+</div>
+
+</body>

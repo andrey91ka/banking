@@ -1,0 +1,22 @@
+<div th:fragment="formclient">
+    <label for="id">ID</label>
+    <input readonly type="text" class="form-control" th:field="*{id}" id="id" placeholder="ID">
+
+    <label for="firstName">Имя</label>
+    <input type="text" class="form-control" th:field="*{firstName}" id="firstName" required>
+
+    <label for="lastName">Фамилия</label>
+    <input type="text" class="form-control" th:field="*{lastName}" id="lastName" required>
+
+    <label for="patronymic">Отчество</label>
+    <input type="text" class="form-control" th:field="*{patronymic}" id="patronymic" required>
+
+    <label for="numberPhone">Телефон</label>
+    <input type="number" class="form-control" th:field="*{numberPhone}" id="numberPhone" >
+
+    <label for="email">емайл</label>
+    <input type="email" class="form-control" aria-describedby="emailHelp" th:field="*{email}" id="email">
+
+    <label for="numberPassport">паспорт</label>
+    <input type="text" class="form-control" th:field="*{numberPassport}" id="numberPassport" required >
+</div>

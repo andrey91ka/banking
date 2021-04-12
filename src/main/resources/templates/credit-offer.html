@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиенты</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="components/navbar :: navbar"></header>
+
+<div class="container">
+    <h1>Heelo world</h1>
+    <div th:switch="${creditOffers}" >
+        <h2 class="m-5" th:case="null">Клиентов в банке пока нет, нажмите добавить</h2>
+
+        <div th:case="*">
+            <h1 class="text-center m-3  ">Кредитное предложение</h1>
+            <table class="table " >
+                <thread>
+                    <tr>
+                        <th>клиент</th>
+                        <th>кредит</th>
+                        <th>сумма</th>
+
+                    </tr>
+                </thread>
+                <tbody>
+                <tr th:each="creditOffer : ${creditOffers}">
+                    <td th:text="${creditOffer.client.lastName} + ' '+ ${creditOffer.client.firstName} +' ' + ${creditOffer.client.patronymic} "></td>
+                    <td th:text="'Лимит по кредиту: '+ ${creditOffer.credit.limit} +'; Процентная ставка: ' + ${creditOffer.credit.percent} + '%' "></td>
+                    <td th:text="${creditOffer.amountOfCredit}"></td>
+
+
+
+                    <td><a th:href="@{paymentSchedule/{id}(id=${creditOffer.id})}" class="btn btn-primary">Просмотреть график платежей</a> </td>
+
+                    <!--                    <td><a th:href="@{client-delete/{id}(id=${client.id})}" class="btn btn-danger">Удалить</a></td>-->
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

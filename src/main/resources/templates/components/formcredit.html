@@ -1,0 +1,11 @@
+<div th:fragment="formcredit">
+
+    <label for="id">ID</label>
+    <input readonly type="text" class="form-control" th:field="*{id}" id="id" placeholder="ID">
+
+    <label for="limit">Лимит по кредиту</label>
+    <input type="number" class="form-control" th:field="*{limit}" id="limit" placeholder="5000" required>
+
+    <label for="percent">Процентная ставка</label>
+    <input type="text" class="form-control" th:field="*{percent}" id="percent" placeholder="5.0 %" required>
+</div>

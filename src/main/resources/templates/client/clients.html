@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиенты</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="components/navbar :: navbar"></header>
+
+<div class="container pt-5">
+    <div th:switch="${clients}" >
+        <h2 th:case="null">Клиентов в банке пока нет, нажмите добавить</h2>
+        <div th:case="*">
+            <h1 class="text-center m-5">Клиенты</h1>
+            <table class="table" >
+                <thread >
+                    <tr>
+                        <th>Имя</th>
+                        <th>Фамилия</th>
+                        <th>Отчество</th>
+                        <th>Телефон</th>
+                        <th>Электронная почта</th>
+                        <th>Номер паспорта</th>
+                    </tr>
+                </thread>
+                <tbody>
+                <tr th:each="client : ${clients}">
+                    <td th:text="${client.firstName}"></td>
+                    <td th:text="${client.lastName}"></td>
+                    <td th:text="${client.patronymic}"></td>
+                    <td th:text="${client.numberPhone}"></td>
+                    <td th:text="${client.email}"></td>
+                    <td th:text="${client.numberPassport}"></td>
+                    <td><a th:href="@{client-update/{id}(id=${client.id})}" class="btn btn-primary"> Редактировать</a> </td>
+                    <td><a th:href="@{client-delete/{id}(id=${client.id})}" class="btn btn-danger ">Удалить</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <a href="/client-add" class="btn btn-primary" role="button" aria-pressed="true">Добавить клиента</a>
+</div>
+
+
+</body>

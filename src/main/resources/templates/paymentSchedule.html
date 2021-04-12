@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Клиенты</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="components/navbar :: navbar"></header>
+
+
+<div class="container  pt-5">
+    <div th:switch="${paymentScheduleList}">
+        <h2 th:case="null">Клиентов в банке пока нет, нажмите добавить</h2>
+        <div th:case="*">
+            <h1 class="text-center m-5">График платежей </h1>
+
+            <table class="table table-bordered">
+                <thread class="thead-inverse">
+                    <tr>
+                        <th>месяцы</th>
+                        <th>дата платежа</th>
+                        <th>Ежемесячный платеж</th>
+                        <th>Сумма гашения тела кредита</th>
+                        <th>Сумма гашения процентов</th>
+
+                    </tr>
+                    </tr>
+                </thread>
+                <tbody>
+                <tr th:each="elem, state : ${paymentScheduleList}">
+
+
+                    <td th:text="${state.count}"></td>
+                    <td th:text="${elem.paymentDate}"></td>
+                    <td th:text="${elem.paymentAmount}"></td>
+                    <td th:text="${elem.repaymentCredit}"></td>
+                    <td th:text="${elem.repaymentPercent}"></td>
+
+                </tr>
+                <tr>
+                    <th>Итого</th>
+                    <th></th>
+                    <th th:text="${#aggregates.sum(paymentScheduleList.![paymentAmount])} "></th>
+                    <th th:text="${#aggregates.sum(paymentScheduleList.![repaymentCredit])} "></th>
+                    <th th:text="${#aggregates.sum(paymentScheduleList.![repaymentPercent])} "></th>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--    <a href="/credit-add" class="btn btn-primary" role="button" aria-pressed="true">Добавить кредит</a>-->
+</div>
+
+
+</body>
+

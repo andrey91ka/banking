@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить пользователя</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="components/navbar :: navbar"></header>
+
+
+<form action="#" th:action="@{/client-update}" th:object="${client}" method="post" class="alert mt-5">
+    <h4 class="text-center">редактировние клиента </h4>
+    <div class="form-group container">
+        <div th:insert="components/formclient :: formclient"></div>
+
+        <a class="btn  btn-secondary pull-left mt-5" href="clients" role="button">Назад</a>
+        <input type="submit" class="btn btn-primary mt-5 " value="Обновить">
+    </div>
+
+</form>
+
+</body>
+</html>
